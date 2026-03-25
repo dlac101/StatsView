@@ -81,8 +81,8 @@ Integrated into the SmartOS JUCI Dashboard as two files:
 
 ## Tech Stack
 
-- Vanilla HTML5 / CSS3 / ES6 JavaScript (no build step, no framework)
-- D3-style SVG chart rendering (no D3 dependency, pure `createElementNS`)
+- Vanilla HTML5 / CSS3 / ES6 JavaScript (no build step, no bundler, no framework)
+- D3.js v7 (CDN) for SVG chart rendering, scales, axes, and stacked area layouts
 - Font Awesome 6 (CDN) for icons
 - JetBrains Mono + Inter fonts (CDN)
 - CSS Grid + Flexbox layout
