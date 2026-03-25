@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NetData 2.0</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css?v=2">
+<script src="https://d3js.org/d3.v7.min.js"></script>
+</head>
+<body data-view="basic">
+
+<!-- Top Bar -->
+<header class="top-bar">
+  <div class="top-bar-left">
+    <span class="top-bar-title">NETDATA</span>
+    <span class="top-bar-version" id="nd-version"></span>
+  </div>
+  <div class="top-bar-center">
+    <div class="pill-group view-group">
+      <button class="pill-btn active" data-view="basic" onclick="setView('basic')">Basic</button>
+      <button class="pill-btn" data-view="advanced" onclick="setView('advanced')">Advanced</button>
+    </div>
+    <div class="pill-group time-group">
+      <button class="pill-btn" data-range="300" onclick="setTimeRange(300)">5m</button>
+      <button class="pill-btn active" data-range="900" onclick="setTimeRange(900)">15m</button>
+      <button class="pill-btn" data-range="3600" onclick="setTimeRange(3600)">1h</button>
+      <button class="pill-btn" data-range="21600" onclick="setTimeRange(21600)">6h</button>
+      <button class="pill-btn" data-range="86400" onclick="setTimeRange(86400)">24h</button>
+    </div>
+  </div>
+  <div class="top-bar-right">
+    <div class="status-badge" id="nd-status">
+      <span class="status-dot"></span>
+      <span class="status-label">CONNECTING</span>
+    </div>
+    <button class="icon-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- Dashboard Grid -->
+<main class="dashboard">
+  <div class="dashboard-grid" id="dashboard-grid">
+
+    <!-- Section: Interface Stats (per-interface cards inserted by JS) -->
+    <div class="section-header" id="section-iface">INTERFACE STATS</div>
+
+    <!-- Section: Wi-Fi Airtime (per-band cards inserted by JS) -->
+    <div class="section-header" id="section-airtime">WI-FI AIRTIME</div>
+
+    <!-- Advanced: System -->
+    <div class="section-header tech-only" id="section-system">SYSTEM</div>
+
+    <div class="card tech-only" id="card-cpu">
+      <div class="card-header">
+        <div class="card-label">CPU</div>
+        <div class="card-meta" id="cpu-meta"></div>
+      </div>
+      <div class="card-body" id="cpu-body"></div>
+    </div>
+
+    <div class="card tech-only" id="card-memory">
+      <div class="card-header">
+        <div class="card-label">MEMORY</div>
+        <div class="card-meta" id="memory-meta"></div>
+      </div>
+      <div class="card-body" id="memory-body"></div>
+    </div>
+
+    <div class="card tech-only" id="card-load">
+      <div class="card-header">
+        <div class="card-label">LOAD</div>
+        <div class="card-meta" id="load-meta"></div>
+      </div>
+      <div class="card-body" id="load-body"></div>
+    </div>
+
+    <div class="card tech-only" id="card-diskio">
+      <div class="card-header">
+        <div class="card-label">DISK I/O</div>
+      </div>
+      <div class="card-body" id="diskio-body"></div>
+    </div>
+
+    <!-- Advanced: System Internals -->
+    <div class="section-header tech-only" id="section-internals">SYSTEM INTERNALS</div>
+
+    <div class="card tech-only" id="card-diskspace">
+      <div class="card-header">
+        <div class="card-label">DISK SPACE</div>
+      </div>
+      <div class="card-body" id="diskspace-body"></div>
+    </div>
+
+    <div class="card tech-only" id="card-processes">
+      <div class="card-header">
+        <div class="card-label">PROCESSES</div>
+      </div>
+      <div class="card-body" id="processes-body"></div>
+    </div>
+
+    <div class="card tech-only" id="card-ctxint">
+      <div class="card-header">
+        <div class="card-label">CTX SWITCHES / INT</div>
+      </div>
+      <div class="card-body" id="ctxint-body"></div>
+    </div>
+
+    <div class="card tech-only" id="card-fds">
+      <div class="card-header">
+        <div class="card-label">FILE DESCRIPTORS</div>
+      </div>
+      <div class="card-body" id="fds-body"></div>
+    </div>
+
+  </div>
+</main>
+
+<!-- Tooltip -->
+<div class="chart-tooltip" id="chart-tooltip"></div>
+
+<script src="netdata-data.js?v=2"></script>
+<script src="netdata.js?v=2"></script>
+</body>
+</html>
