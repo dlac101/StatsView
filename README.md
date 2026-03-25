@@ -1,6 +1,6 @@
 # StatsView
 
-A real-time system and network statistics dashboard for SmartOS residential gateways (Adtran/SmartRG). Replaces the stock Netdata WebUI with a purpose-built interface integrated into the SmartOS JUCI Dashboard. Built as vanilla HTML/CSS/JS with no build step.
+A real-time system and network statistics dashboard for SmartOS residential gateways. A purpose-built interface integrated into the SmartOS JUCI Dashboard. Built as vanilla HTML/CSS/JS with no build step.
 
 ![StatsView Advanced](screenshots/statsview-advanced.png)
 
